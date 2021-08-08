@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "docker": "docker build --pull --rm -f \".docker/Dockerfile\" -t next-app:latest .",
-    "analyze": "webpack-bundle-analyzer dist/angular-boilerplate/stats.json"
+    "docker": "docker build --pull --rm -f \".docker/Dockerfile\" -t next-app:latest ."
   },
   "dependencies": {
     "next": "11.0.1",
@@ -20,16 +19,12 @@
     "@commitlint/config-conventional": "^13.1.0",
     "@types/react": "17.0.16",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
-    "@typescript-eslint/parser": "^4.29.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
-    "prettier-eslint": "^13.0.0",
-    "typescript": "4.3.5",
-    "webpack-bundle-analyzer": "^4.4.2"
+    "typescript": "4.3.5"
   }
 }

@@ -1,6 +1,5 @@
 {
-  "root": true,
-  "plugins": ["@typescript-eslint", "react-hooks"],
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "next",
     "next/core-web-vitals",
