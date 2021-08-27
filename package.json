@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write src",
+    "pre-commit": "lint-staged",
+    "prepare": "husky install",
     "docker": "docker build --pull --rm -f \".docker/Dockerfile\" -t next-app:latest ."
   },
   "dependencies": {
@@ -15,6 +18,7 @@
     "@emotion/styled": "^11.3.0",
     "framer-motion": "^4.1.17",
     "next": "11.0.1",
+    "next-pwa": "^5.2.24",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0"

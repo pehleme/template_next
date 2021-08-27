@@ -1,16 +1,16 @@
-import { Flex, Link, Text } from "@chakra-ui/react";
-import Image from "next/image";
-import React from "react";
+import { Flex, Link, Text } from '@chakra-ui/react';
+import Image from 'next/image';
+import React from 'react';
 
-import HelperImage from "./HelperImage";
-import MotionBox from "./motion/Box";
+import HelperImage from './HelperImage';
+import MotionBox from './motion/Box';
 
 const SomeImage = () => {
   return (
     <>
       <MotionBox
         animate={{ y: 20, scale: 0.97 }}
-        transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
+        transition={{ repeat: Infinity, duration: 2, repeatType: 'reverse' }}
         marginY={8}
         maxWidth={[280, 400]}
         marginX="auto"

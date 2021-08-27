@@ -1,4 +1,4 @@
-import { Box, Heading, useColorMode } from "@chakra-ui/react";
+import { Box, Heading, useColorMode } from '@chakra-ui/react';
 
 const SomeText = () => {
   const { colorMode } = useColorMode();
@@ -10,7 +10,7 @@ const SomeText = () => {
       </Heading>
 
       <Box
-        backgroundColor={colorMode === "light" ? "gray.200" : "gray.500"}
+        backgroundColor={colorMode === 'light' ? 'gray.200' : 'gray.500'}
         padding={4}
         borderRadius={4}
       >
