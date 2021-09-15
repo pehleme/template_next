@@ -7,8 +7,11 @@ import { cookie, CookieItemEnum } from '~/utils';
 const signIn = async (authenticate: AuthenticateModel): Promise<void> => {
   api
     .post<UserModel>('/login', authenticate)
-    .then((res) => {
-      cookie.set<UserModel>(CookieItemEnum.Auth, res.data);
+    .then(({ data }) => {
+      cookie.set<UserModel>(CookieItemEnum.Auth, data);
+      if (data.token) {
+        cookie.set<string>(CookieItemEnum.Auth, data.token);
+      }
       toast.success('Login realizado com sucesso');
     })
     .catch(() => {
@@ -18,6 +21,7 @@ const signIn = async (authenticate: AuthenticateModel): Promise<void> => {
 
 const signOut = async (): Promise<void> => {
   cookie.remove(CookieItemEnum.Auth);
+  cookie.remove(CookieItemEnum.Token);
 };
 
 const currentUser = (): UserModel | undefined => {

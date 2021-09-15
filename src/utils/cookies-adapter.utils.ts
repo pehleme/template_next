@@ -5,6 +5,7 @@ import { destroyCookie, parseCookies, setCookie as setNookies } from 'nookies';
 
 export enum CookieItemEnum {
   Auth = '@App:auth',
+  Token = '@App:token',
 }
 
 type CookieCtxOptions =

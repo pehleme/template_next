@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { UserModel } from '~/data/models';
 import { environments } from '~/environments';
 import { cookie, CookieItemEnum } from '~/utils';
 
@@ -8,11 +7,13 @@ const axiosConfig: AxiosRequestConfig = { baseURL: environments.apiURL };
 const api: AxiosInstance = axios.create(axiosConfig);
 
 const authInterceptor = (config: AxiosRequestConfig) => {
-  const { refreshToken } = cookie.get<UserModel>(CookieItemEnum.Auth) ?? {};
-  const isApiUrl = config.url?.startsWith(environments.apiURL ?? '');
+  const token = cookie.get<string>(CookieItemEnum.Token);
+  const isApiURL = config.url?.startsWith(environments.apiURL ?? '');
 
-  if (refreshToken && isApiUrl) {
-    config.headers.Authorization = `Baerer ${refreshToken}`;
+  console.log(config);
+
+  if (token && isApiURL) {
+    config.headers.Authorization = `Baerer ${token}`;
   }
 
   return config;
