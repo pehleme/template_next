@@ -1,34 +1,13 @@
-import { NextApiResponse, NextPageContext } from 'next';
-
-import { Response } from 'express';
 import { destroyCookie, parseCookies, setCookie as setNookies } from 'nookies';
+
+import { CookieCtxOptions, CookieSerializeOptions } from '~/types';
 
 export enum CookieItemEnum {
   Auth = '@App:auth',
   Token = '@App:token',
 }
 
-type CookieCtxOptions =
-  | Pick<NextPageContext, 'res'>
-  | {
-      res: NextApiResponse;
-    }
-  | {
-      res: Response;
-    }
-  | null
-  | undefined;
-
-type CookieSerializeOptions = {
-  domain?: string | undefined;
-  encode?(value: string): string;
-  expires?: Date | undefined;
-  httpOnly?: boolean | undefined;
-  maxAge?: number | undefined;
-  path?: string | undefined;
-  sameSite?: true | false | 'lax' | 'strict' | 'none' | undefined;
-  secure?: boolean | undefined;
-};
+const THIRTY_DAYS = 60 * 60 * 24 * 30;
 
 const get = <T>(name: CookieItemEnum): T | undefined => {
   const item = parseCookies()[name];
@@ -40,7 +19,7 @@ const set = <T>(
   value: T,
   ctx: CookieCtxOptions = undefined,
   options: CookieSerializeOptions = {
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: THIRTY_DAYS,
   }
 ): void => {
   setNookies(ctx, name, JSON.stringify(value), options);
