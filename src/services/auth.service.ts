@@ -4,6 +4,12 @@ import { api } from '~/configs/api.service';
 import { AuthenticateModel, UserModel } from '~/data/models';
 import { cookie, CookieItemEnum } from '~/utils';
 
+const currentUser = (): UserModel | undefined => {
+  return cookie.get<UserModel>(CookieItemEnum.Auth);
+};
+
+const isLoggedIn = !!currentUser();
+
 const signIn = async (authenticate: AuthenticateModel): Promise<void> => {
   api
     .post<UserModel>('/login', authenticate)
@@ -24,8 +30,4 @@ const signOut = async (): Promise<void> => {
   cookie.remove(CookieItemEnum.Token);
 };
 
-const currentUser = (): UserModel | undefined => {
-  return cookie.get<UserModel>(CookieItemEnum.Auth);
-};
-
-export const authService = { signIn, signOut, currentUser };
+export const authService = { isLoggedIn, currentUser, signIn, signOut };
