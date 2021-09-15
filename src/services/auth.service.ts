@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 
-import { api } from '~/config/api.service';
+import { api } from '~/configs/api.service';
 import { AuthenticateModel, UserModel } from '~/data/models';
 import { cookie, CookieItemEnum } from '~/utils';
 
