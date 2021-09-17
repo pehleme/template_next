@@ -4,10 +4,8 @@ import { Flex, ListItem, OrderedList } from '@chakra-ui/layout';
 
 import { Layout } from '~/components';
 import { useAuth } from '~/contexts';
-import { useTasks } from '~/hooks';
 
 function Home(): JSX.Element {
-  const { data, isLoading, error } = useTasks();
   const { user } = useAuth();
 
   return (

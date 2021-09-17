@@ -1,5 +1,5 @@
 {
-  "name": "ambev-matrix",
+  "name": "template-next",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -20,7 +20,6 @@
     "@emotion/styled": "11",
     "@hookform/resolvers": "^2.8.0",
     "axios": "^0.21.4",
-    "cross-env": "^7.0.3",
     "framer-motion": "4",
     "next": "11.1.2",
     "nookies": "^2.5.2",
@@ -46,9 +45,12 @@
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "babel-jest": "^27.2.0",
+    "cross-env": "^7.0.3",
+    "cypress": "^8.4.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-import-helpers": "^1.1.0",
     "eslint-plugin-import-order": "^2.1.4",
