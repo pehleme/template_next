@@ -13,16 +13,16 @@ async function getTask(id?: number | string): Promise<TaskModel> {
   return data;
 }
 
-const createTask = async (body: TaskModel): Promise<void> => {
-  const { data } = await api.post(`${apiPath}`, body);
+const createTask = async (task: TaskModel): Promise<void> => {
+  const { data } = await api.post(`${apiPath}`, task);
   return data;
 };
 
 const updateTask = async (
   id: number | string,
-  body: TaskModel
+  task: TaskModel
 ): Promise<void> => {
-  const { data } = await api.post(`${apiPath}/${id}`, body);
+  const { data } = await api.post(`${apiPath}/${id}`, task);
   return data;
 };
 

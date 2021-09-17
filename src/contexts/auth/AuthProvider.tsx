@@ -1,4 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+
+import { useRouter } from 'next/dist/client/router';
+
+import { AxiosError } from 'axios';
 
 import { AuthenticateModel, UserModel } from '~/data/models';
 import { authService } from '~/services';
@@ -9,33 +14,38 @@ const AuthContext = createContext<PropsAuthContext>({} as PropsAuthContext);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<UserModel | undefined>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const { replace } = useRouter();
 
   const { currentUser, signIn, signOut } = authService;
 
   useEffect(() => {
     setUser(currentUser);
-    setIsLoading(false);
+    setIsLoggedIn(!!user);
   }, []);
 
-  function login(authenticate: AuthenticateModel) {
-    setIsLoading(true);
-
-    signIn(authenticate)
-      .then(() => setUser(currentUser))
-      .finally(() => setTimeout(() => setIsLoading(false), 1500));
+  async function login(authenticate: AuthenticateModel) {
+    await signIn(authenticate)
+      .then(() => {
+        setUser(currentUser);
+        setIsLoggedIn(true);
+        replace('/');
+        toast.success('Login realizado com sucesso');
+      })
+      .catch(({ response }: AxiosError) => {
+        toast.error(response?.data?.error);
+      });
   }
 
   function logout() {
-    setIsLoading(true);
-
-    signOut()
-      .then(() => setUser(undefined))
-      .finally(() => setTimeout(() => setIsLoading(false), 1500));
+    signOut();
+    setUser(undefined);
+    setIsLoggedIn(false);
+    replace('/logout');
   }
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ user, isLoggedIn, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

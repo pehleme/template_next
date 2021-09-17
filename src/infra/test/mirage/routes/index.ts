@@ -4,6 +4,22 @@ import { Server } from 'miragejs/server';
 export function routes(this: Server): void {
   this.namespace = 'api';
 
+  // Login
+  this.post(`/login`, (schema, request) => {
+    const { email, password } = JSON.parse(request.requestBody);
+    const user = schema.db.users.findBy({ email, password });
+
+    setTimeout(() => {
+      //
+    }, 10000);
+
+    if (user) {
+      return user;
+    } else {
+      return new Response(400, {}, { error: 'Erro ao realizar login' });
+    }
+  });
+
   // Task
   this.get(`/tasks`, (schema) => {
     return schema.db.tasks;
