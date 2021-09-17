@@ -5,4 +5,13 @@ export const theme = extendTheme({
     heading: 'Roboto',
     body: 'Roboto',
   },
+  styles: {
+    global: {
+      body: {
+        bg: 'gray.900',
+        height: '100%',
+        'overflow-y': 'hidden',
+      },
+    },
+  },
 });

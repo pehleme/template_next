@@ -1,16 +1,13 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import { environments } from '~/environments';
-import { cookie, CookieItemEnum } from '~/utils';
+import { cookie, CookieItemEnum } from '~/infra/cache';
 
-const axiosConfig: AxiosRequestConfig = { baseURL: environments.apiURL };
-const api: AxiosInstance = axios.create(axiosConfig);
+const api = axios.create({ baseURL: environments.apiURL });
 
 const authInterceptor = (config: AxiosRequestConfig) => {
   const token = cookie.get<string>(CookieItemEnum.Token);
-  const isApiURL = config.url?.startsWith(environments.apiURL ?? '');
-
-  console.log(config);
+  const isApiURL = config.baseURL?.startsWith(environments.apiURL ?? '');
 
   if (token && isApiURL) {
     config.headers.Authorization = `Baerer ${token}`;

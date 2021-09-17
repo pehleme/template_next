@@ -1,16 +1,13 @@
 import toast from 'react-hot-toast';
 
-import { api } from '~/configs/api.service';
 import { AuthenticateModel, UserModel } from '~/data/models';
-import { cookie, CookieItemEnum } from '~/utils';
+import { cookie, CookieItemEnum } from '~/infra/cache';
+import { api } from '~/infra/http/api-client/api-client';
 
-const currentUser = (): UserModel | undefined => {
-  return cookie.get<UserModel>(CookieItemEnum.Auth);
-};
+const currentUser = cookie.get<UserModel>(CookieItemEnum.Auth);
+const isLoggedIn = !!currentUser;
 
-const isLoggedIn = !!currentUser();
-
-const signIn = async (authenticate: AuthenticateModel): Promise<void> => {
+async function signIn(authenticate: AuthenticateModel): Promise<void> {
   api
     .post<UserModel>('/login', authenticate)
     .then(({ data }) => {
@@ -23,11 +20,11 @@ const signIn = async (authenticate: AuthenticateModel): Promise<void> => {
     .catch(() => {
       toast.error('Erro ao realizar login');
     });
-};
+}
 
-const signOut = async (): Promise<void> => {
+async function signOut(): Promise<void> {
   cookie.remove(CookieItemEnum.Auth);
   cookie.remove(CookieItemEnum.Token);
-};
+}
 
 export const authService = { isLoggedIn, currentUser, signIn, signOut };
