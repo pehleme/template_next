@@ -4,12 +4,12 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 import type { AppProps } from 'next/app';
 
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Flex } from '@chakra-ui/react';
 
 import GlobalProvider from '~/contexts';
 import { environments } from '~/environments';
+import { makeServer } from '~/infra/test/mirage/server';
 import { theme } from '~/styles/theme';
-import { makeServer } from '~/test/mirage/server';
 
 if (environments.mock) {
   makeServer();
