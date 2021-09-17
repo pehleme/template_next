@@ -1,13 +1,16 @@
 module.exports = {
   roots: ['<rootDir>/src'],
   preset: 'ts-jest',
-  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  testEnvironment: 'jsdom',
   globals: {
     'ts-jest': {
       tsConfig: 'tsconfig.jest.json',
       babelConfig: true,
       diagnostics: false,
     },
+  },
+  transform: {
+    '.+\\.(ts|tsx)$': 'ts-jest',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   coveragePathIgnorePatterns: [
@@ -16,8 +19,9 @@ module.exports = {
     '<rootDir>/src/infra/test/',
   ],
   moduleNameMapper: {
-    '^~(.*)$': '<rootDir>/src/$1',
+    '~/(.*)$': '<rootDir>/src/$1',
   },
+  collectCoverage: true,
   coverageReporters: ['lcov', 'text', 'cobertura'],
   reporters: [
     'default',
@@ -28,11 +32,4 @@ module.exports = {
       },
     ],
   ],
-  bail: 1,
-  clearMocks: true,
-  collectCoverage: true,
-  testEnvironment: 'jsdom',
-  transform: {
-    '.+\\.(ts|tsx)$': 'ts-jest',
-  },
 };
