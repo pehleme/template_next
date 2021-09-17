@@ -9,7 +9,11 @@ module.exports = {
     },
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  coveragePathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/.next/',
+    '<rootDir>/node_modules/',
+    '<rootDir>/src/infra/test/',
+  ],
   moduleNameMapper: {
     '^~(.*)$': '<rootDir>/src/$1',
   },
