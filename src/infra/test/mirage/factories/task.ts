@@ -4,7 +4,9 @@ import { Factory } from 'miragejs';
 import { TaskStatusEnum } from '~/data/enums';
 
 export const task = Factory.extend({
-  id: faker.datatype.uuid(),
+  id() {
+    return faker.datatype.uuid();
+  },
   cratedAt: faker.date.recent(),
   updatedAt: faker.date.recent(),
   name: faker.name.findName(),

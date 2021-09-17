@@ -1,8 +1,7 @@
-import { Registry, Response } from 'miragejs';
-import { AnyFactories, AnyModels } from 'miragejs/-types';
+import { Response } from 'miragejs';
 import { Server } from 'miragejs/server';
 
-export function routes(this: Server<Registry<AnyModels, AnyFactories>>): void {
+export function routes(this: Server): void {
   this.namespace = 'api';
 
   // Task

@@ -5,6 +5,8 @@ import { Flex, ListItem, OrderedList } from '@chakra-ui/layout';
 import { useTasks } from '~/hooks';
 
 function Home(): JSX.Element {
+  const { data, isLoading, error } = useTasks();
+
   return (
     <Flex direction="column" justify="center" align="center" w="100%" h="100%">
       Esse é um template da HDN contendo:
